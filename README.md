@@ -19,8 +19,11 @@ npm run build
 # 全局安装 pm2
 npm install pm2 forever -g
 
-# 程序启动
+# 主程序启动
 pm2 start app.js -i max --name app
+
+# 定时任务程序启动
+forever start cron.js
 ```
 ## nginx 配置文件中部分配置
 
