@@ -1,0 +1,67 @@
+
+/*详情信息*/
+.detill-info .detill-row{
+	font-size: 14px;
+	color: #333;
+}
+.detill-info .detill-row .btn-share{
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #FF9900;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+.detill-info .detill-row .btn-share:hover{
+	color: red;
+}
+.detill-info .detill-row .labels{
+	color: #666;
+}
+.detill-info .detill-row h1{
+	font-size: 18px;
+	line-height: 30px;
+	padding: 15px 0;
+	font-weight: normal;
+}
+.detill-info .detill-row .play-btn{
+	background: #FF9900;
+	color: #fff;
+	display: inline-block;
+	padding: 6px 30px;
+	border-radius: 4px;
+	transform: all 0.5s;
+}
+.detill-info .detill-row .play-btn:hover{
+	background: #FF6600;
+	color: #fff!important;
+}
+.detill-laber{
+	font-size: 13px;
+	color: #999;
+}
+
+
+
+
+@media (min-width:992px){
+	.detill-cover{width: 190px;}
+	.detill-row{
+		padding-left: 20px;
+	}
+	.detill-info .detill-row li{
+		padding-bottom: 15px;
+	}
+}
+@media (max-width:992px){
+	.detill-cover{width: 115px;}
+	.detill-info .detill-row h1{
+		padding: 0px;
+	}
+	.detill-info .detill-row li{
+		padding-bottom: 5px;
+	}
+	.detill-row{
+		padding-left: 10px;
+	}
+}

@@ -1,0 +1,35 @@
+.type-con .type-row {
+    padding: 5px 0;
+    align-items: flex-start;
+}
+.type-con .col-link a,
+.type-con .type-row label {
+    display: inline-block;
+    padding: 3px 8px 4px;
+    font-size: 15px;
+    border-radius: 2px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-top: 5px;
+}
+.type-con .type-row label {
+    color: #999;
+}
+.type-con .col-link a:hover,
+.type-con .col-link a.active {
+    background: #FF9900;
+    color: #fff;
+}
+@media (min-width:992px) {
+    .type-row-col {
+        display: block;
+    }
+}
+@media (max-width:992px) {
+    .type-row-col {
+        display: flex;
+    }
+}
