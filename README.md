@@ -4,7 +4,14 @@
 整个系统需要环境 nginx（分发请求给nodejs，http2，ssl），nodejs（数据处理），mongodb（数据存储）
 
 ## 预览
-![](https://github.com/abcd498936590/pic/blob/master/img/dart-cms-1.png?raw=true "Dart Cms")
+<p align="center">
+    <img src="https://github.com/abcd498936590/pic/blob/master/img/dart-cms-1.png?raw=true" width="50%" />
+    <img src="https://github.com/abcd498936590/pic/blob/master/img/dart-cms-2.png?raw=true" width="50%" />
+    <img src="https://github.com/abcd498936590/pic/blob/master/img/dart-cms-3.png?raw=true" width="50%" />
+    <img src="https://github.com/abcd498936590/pic/blob/master/img/dart-cms-4.png?raw=true" width="50%" />
+    <img src="https://github.com/abcd498936590/pic/blob/master/img/dart-cms-5.png?raw=true" width="50%" />
+    <img src="https://github.com/abcd498936590/pic/blob/master/img/dart-cms-6.png?raw=true" width="50%" />
+</p>
 ## 说明
 > 要求：nodejs >=7.6 mongodb >=3.4
 
