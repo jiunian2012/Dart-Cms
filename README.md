@@ -22,6 +22,39 @@ npm install pm2 forever -g
 # 程序启动
 pm2 start app.js -i max --name app
 ```
+## nginx 配置文件中部分配置
+
+``` bash
+server {
+    listen       80;
+    # http 强制跳转 https
+    rewrite ^(.*)$ https://$host$1 permanent;
+}
+server {
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-NginX-Proxy true;
+        # 这里因为nodejs只是开了http，所以nginx转发给nodejs的请求，nodejs自己也只能识别自己开启的http，而不是https
+        # 所以需要在header手动加入一个字段，告诉nodejs，当前的协议是http 或者 https
+        proxy_set_header X-Proxy-Protocol "https";
+        # 要代理的本地后台 代理给nodejs
+        proxy_pass  http://127.0.0.1:9999;
+    }
+    # 监听 ssl 443 端口
+    listen 443 ssl http2;
+    # 这里填网站域名，开启域名验证，只允许域名访问
+    server_name xxx.com;   
+
+    # 开启 ssl
+    # ssl on;
+    # 指定 ssl 证书路径
+    ssl_certificate /etc/ssl/xxx.com_chain.crt;
+    # 指定私钥文件路径
+    ssl_certificate_key /etc/ssl/xxx.com_key.key;
+}
+```
 
 ## 后台登录系统默认账号密码
 
