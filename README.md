@@ -48,7 +48,6 @@ server {
     server_name xxx.com;   
 
     # 开启 ssl
-    # ssl on;
     # 指定 ssl 证书路径
     ssl_certificate /etc/ssl/xxx.com_chain.crt;
     # 指定私钥文件路径
