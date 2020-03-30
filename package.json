@@ -10,6 +10,10 @@
     ],
     "license": "MIT",
     "author": "yoka",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:abcd498936590/Dart-Cms.git"
+    },
     "scripts": {
         "build": "node ./build/initDataBase.js",
         "restore": "mongorestore -d movie ./backup/movie",
