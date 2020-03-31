@@ -13,6 +13,9 @@
     <img src="https://github.com/abcd498936590/pic/blob/master/img/dart-cms-6.png?raw=true" width="45%" />
 </p>
 
+##懒人部署
+[手拉手开发nodejs电影cms系统③：宝塔面板懒人部署](https://segmentfault.com/a/1190000022219771)
+
 ## 说明
 > 要求：nodejs >=7.6 mongodb >=3.4
 

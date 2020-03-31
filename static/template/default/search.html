@@ -38,7 +38,7 @@
 							<!-- pc导航栏 -->
 							<div class="pc-nav">
 								<% nav.forEach((item, index) => { %>
-								<a class="<% if(item.active) { %>active<% } else { %> <% } %>" href="<%= item.link %>"><%= item.name %></a>
+								<a class="<% if(item.active) { %>active<% } else { %> <% } %>" href="<%= meta.hostName %><%= item.link %>"><%= item.name %></a>
 								<% }) %>
 							</div>
 							<!--  -->
@@ -118,7 +118,7 @@
 				<!-- mobile导航栏 -->
 				<div class="mobile-nav ov-x-a ov-y-h" style="white-space: nowrap">
 					<% nav.forEach((item, index) => {  %>
-					<a class="<% if(item.active) { %>active<% } else { %> <% } %>" href="<%= item.link %>"><%= item.name %></a>
+					<a class="<% if(item.active) { %>active<% } else { %> <% } %>" href="<%= meta.hostName %><%= item.link %>"><%= item.name %></a>
 					<% }) %>
 				</div>
 				<!--  -->
