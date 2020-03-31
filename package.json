@@ -1,13 +1,4 @@
 {
-    "name": "Dart-Cms",
-    "keywords": [
-        "cms",
-        "vue",
-        "nodejs",
-        "mongodb"
-    ],
-    "license": "MIT",
-    "author": "yoka",
     "scripts": {
         "build": "node ./build/initDataBase.js",
         "restore": "mongorestore -d movie ./backup/movie",
