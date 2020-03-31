@@ -74,8 +74,6 @@ app.use(tokenStore({
 app.use(webRouter.routes());
 // 管理系统 路由
 app.use(manageRouter.routes());
-// 管理系统 路由
-app.use(appRouter.routes());
 
 
 // url矫正

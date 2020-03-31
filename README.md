@@ -26,7 +26,7 @@ npm install
 # 初始化数据（创建默认数据）
 npm run build
 
-# 全局安装 pm2
+# 全局安装 pm2 forever
 npm install pm2 forever -g
 
 # 主程序启动
@@ -58,7 +58,7 @@ server {
     # 监听 ssl 443 端口
     listen 443 ssl http2;
     # 这里填网站域名，开启域名验证，只允许域名访问
-    server_name xxx.com;   
+    server_name xxx.com;
 
     # 开启 ssl
     # 指定 ssl 证书路径

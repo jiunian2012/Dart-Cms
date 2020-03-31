@@ -1,7 +1,5 @@
 {
-    "name": "Dart Cms 内容管理系统",
-    "version": "1.0",
-    "description": "nodejs + mongodb 实现的一套内容电影网站内容管理系统",
+    "name": "Dart-Cms",
     "keywords": [
         "cms",
         "vue",
@@ -10,10 +8,6 @@
     ],
     "license": "MIT",
     "author": "yoka",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:abcd498936590/Dart-Cms.git"
-    },
     "scripts": {
         "build": "node ./build/initDataBase.js",
         "restore": "mongorestore -d movie ./backup/movie",
