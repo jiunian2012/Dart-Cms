@@ -64,6 +64,8 @@ $(document).ready(function(){
 		var listIndex = query.hasOwnProperty('index') && tabSource[tabIndex].list[query['index']] ? Number(query['index']) : 0;
 		var frameH = ($(window).width() < 990 ? 300 : 500) + 'px';
 
+		playerBox.css({height: frameH, backgroundColor: '#000'});
+
 		// 是否禁用
 		var prevBtn = $('#prevBtn');
 		var nextBtn = $('#nextBtn');
@@ -87,16 +89,16 @@ $(document).ready(function(){
 		var curUrlInfo = tabSource[tabIndex].list[listIndex].split('$');
 		// 播放
 		if(tabSource[tabIndex].type === 'player'){
-			playerBox.html(`<iframe webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="height: ${frameH}; border: none;width: 100%;" class="player-frame" src="/player/index.html?${curUrlInfo[1]}" />`);
+			playerBox.html(`<iframe webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="height: 100%; border: none;width: 100%;" class="player-frame" src="/player/index.html?${curUrlInfo[1]}" />`);
 		}else if(tabSource[tabIndex].type === 'iframe'){
-			playerBox.html(`<iframe webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="height: ${frameH}; border: none;width: 100%;" class="player-frame" src="${curUrlInfo[1]}" />`);
+			playerBox.html(`<iframe webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="height: 100%; border: none;width: 100%;" class="player-frame" src="${curUrlInfo[1]}" />`);
 		}
 		// 历史
 		setHistory(curUrlInfo[0]);
 		// 窗口变化
 		$(window).resize(function(){
 			var frameH = ($(window).width() < 990 ? 300 : 500) + 'px';
-			$('.player-frame').css({height: frameH});
+			playerBox.css({height: frameH});
 		});
 	}
 

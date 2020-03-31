@@ -60,16 +60,25 @@ let RunScript = async (ctx, next) => {
 
 		let { alias } = ctx.request.body;
 		let scriptPath = path.resolve(__dirname, `../../script/${alias}/app.js`)
-		let promise;
+		let promise,
+		errInfo;
 
 		try{
+			let confPath = path.resolve(__dirname, `../../script/${alias}/config.json`);
+			let curScriptConf = await fse.readJson(confPath);
+			if(curScriptConf.state){
+				errInfo = '脚本正在运行，无法启动';
+				throw new Error(errInfo);
+			}
 			promise = Promise.resolve();
 			exec(`node ${scriptPath}`, {async:true});
 		}catch(err){
 			promise = Promise.reject();
 		}
 
-		await setResponse(ctx, promise);
+		await setResponse(ctx, promise, {
+			error: errInfo
+		});
 
 	}, {admin: true}, {insRole: true, childrenKey: 'runScript', parentKey: 'script'})
 
