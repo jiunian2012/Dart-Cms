@@ -3,7 +3,7 @@
 		window.location.href = $(`#${id}`).attr('data-url');
 	}
 })(window, document);
-$(document).ready(function(){
+;(function(w, d){
 	// 源数组
 	var tabSource = [];
 	// 设置历史记录
@@ -104,4 +104,4 @@ $(document).ready(function(){
 
 	// 调用初始化数据
 	initTabSource();
-});
+})(window, document);

@@ -20,7 +20,7 @@ let webIndex = async (ctx, next) => {
 
 	let isSwiperLen = 0;
 	if(config.openSwiper){
-		isSwiperLen = await videoInfoColl.find({popular: true, display: true}).count();
+		isSwiperLen = await videoInfoColl.find({openSwiper: true, display: true}).count();
 	}
 	let tabList = [];
 
@@ -34,11 +34,16 @@ let webIndex = async (ctx, next) => {
 		for(let arg of curNavChildren){
 			queryArr.push(arg._id)
 		}
+		// 置顶数据 + 普通数据
+		let topCurNavList = await videoInfoColl.find({popular: true, display: true, video_type: {$in: queryArr}}).sort({rel_time: -1, video_rate: -1, update_time: -1}).limit(12).toArray();
+		let spacing = 12 - topCurNavList.length;
+		let curNavList = (spacing !== 0) ? await videoInfoColl.find({popular: false, display: true, video_type: {$in: queryArr}}).sort({rel_time: -1, video_rate: -1, update_time: -1}).limit(spacing).toArray() : [];
+
 		tabList.push({
 			left: {
 				title: arg.name,
 				_id: arg._id,
-				list: await videoInfoColl.find({display: true, video_type: {$in: queryArr}}).sort({rel_time: -1, video_rate: -1, update_time: -1}).limit(12).toArray()
+				list: topCurNavList.concat(curNavList)
 			},
 			right: {
 				title: '最新' + arg.name,
@@ -54,9 +59,10 @@ let webIndex = async (ctx, next) => {
 			description: config.description,
 			hostName: ctx.protocols + '://' + ctx.host,
 		},
+		mealList: await otherColl.find({type: 'advert', shape: 'web'}).toArray(),
 		isLogin: JSON.stringify(ctx.session1) !== '{}' ? true : false,
 		isOpenSwiper: !!isSwiperLen,
-		swiperList: (!!isSwiperLen) ? await videoInfoColl.find({display: true, popular: true}).toArray() : [],
+		swiperList: (!!isSwiperLen) ? await videoInfoColl.find({display: true, openSwiper: true}).sort({rel_time: -1, video_rate: -1, update_time: -1}).toArray() : [],
 		footer: config.footerInfo.replace(/\n/, '<br />'),
 		nav: navData,
 		//
