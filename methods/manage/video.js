@@ -68,6 +68,7 @@ let GetVideoList = async (ctx, next) => {
 						remind_tip: 1,
 						popular: 1,
 						allow_reply: 1,
+						openSwiper: 1,
 						display: 1,
 						scource_sort: 1,
 						video_type: '$type.name'
