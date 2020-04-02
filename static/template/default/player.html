@@ -127,11 +127,22 @@
 					<div class="row-col">
 						<div class="pr player-box">
 							<div class="notice"></div>
-							<div id="player-con">
-
-							</div>
+							<div id="player-con"></div>
+							<script>
+							;(function(){
+								var playerCon = document.getElementById('player-con');
+								function setPlayerStyle (){
+									var cW = document.body.clientWidth;
+									var playerH = (cW < 990 ? 300 : 500) + 'px';
+									playerCon.style.height = playerH;
+									playerCon.style.backgroundColor = '#000';
+								}
+								setPlayerStyle();
+								window.onresize = setPlayerStyle;
+							})();
+							</script>
 						</div>
-						<div class="pub-flex">
+						<div class="pub-flex mt10">
 							<!-- 信息 -->
 							<div class="play-info link pub-flex1">
 								<h1 id="video_info" data-info="<%= JSON.stringify({videoTitle: videoInfo.videoTitle, _id: videoInfo._id}); %>" class="pt5 pb5" style="color: #333;font-size: 25px;font-weight: normal;"><%= videoInfo.videoTitle %></h1>
