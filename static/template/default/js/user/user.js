@@ -16,7 +16,7 @@
 			}
 		},
 		methods: {
-			ajax: function(obj, successFn, completeFn, This){
+			ajax: function(obj, successFn, completeFn, This, bool){
 				$.ajax({
 				    type: 'POST',
 				    async: true,
@@ -38,7 +38,10 @@
 				    	console.log(xhr, errorData);
 				    },
 				    complete : function(xhr, status){
-				    	// this.tabOneLoading = false;
+				    	this.tabOneLoading = false;
+				    	if(bool){
+				    		return
+				    	}
 				    	completeFn.call(this, xhr, status);
 				    	var result = xhr.responseJSON.code === 200 ;
 				    	This.$message({
@@ -90,7 +93,7 @@
 			    	}
 				}, function(){
 					this.tabOneLoading = false;
-				}, this);
+				}, this, true);
 			}
 		},
 		created: function(){

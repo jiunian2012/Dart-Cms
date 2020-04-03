@@ -62,6 +62,7 @@ client.then(async (db) => {
             "description" : "XXX电影网为您提供最新最快的视频分享数据。看热门电影,上春秋影院,支持手机电影在线观看。",
             "footerInfo" : "<p>XXX影视免费提供的完整版全集电影电视剧在线观看数据来自网络视频资源平台，本站未参与任何制作与下载，仅供WEB引用。</p><br/><p>Copyright © XXX影院XXX.COM</p>",
             "notice" : "<p>请勿相信视频中的广告</p>",
+            "publicCode" : "",
             "openSwiper" : false,
             "isBjTime" : true,
             "allowReply" : false,

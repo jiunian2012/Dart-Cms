@@ -18,7 +18,7 @@ let GetVideoList = async (ctx, next) => {
 	await authToken(ctx, next, async () => {
 
 		let videoColl = getDB().collection('video_info');
-		let { page=1, limit=10, search=false, sort={update_time: 1, video_rate: -1} } = ctx.request.body;    // query get
+		let { page=1, limit=10, search=false, sort={update_time: -1} } = ctx.request.body;    // query get
 
 		limit = limit > 100 ? 100 : limit;
 

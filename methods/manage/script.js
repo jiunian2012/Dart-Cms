@@ -26,10 +26,10 @@ function readDirSync(pathStr){
 				name: curConf.name,
 				state: curConf.state,
 				alias: curConf.alias,
-				domain: curConf.domain,
 				file: curConf.file,
 				timeout: curConf.timeout,
 				stateName: curConf.state ? "运行中" : "空闲",
+				options: curConf.options,
 			})
 		}
 	})
@@ -88,8 +88,8 @@ let UpdateScript = async (ctx, next) => {
 
 	await authToken(ctx, next, async () => {
 
-		let { alias, name, domain, timeout } = ctx.request.body;
-		let mixins = { name, domain, timeout };
+		let { alias, name, timeout, options } = ctx.request.body;
+		let mixins = { name, timeout, options };
 		let promise = mixinsScriptConfig(alias, mixins) ? Promise.resolve() : Promise.reject();
 
 		await setResponse(ctx, promise, {

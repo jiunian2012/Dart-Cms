@@ -67,7 +67,8 @@ let webIndex = async (ctx, next) => {
 		nav: navData,
 		//
 		tabList: tabList,
-		links: await otherColl.find({type: 'link'}).toArray()
+		links: await otherColl.find({type: 'link'}).toArray(),
+		publicCode: config.publicCode,
 	}
 
 	await ctx.render(`${curTempPath}/index`, data)
@@ -178,7 +179,8 @@ let webUser = async (ctx, next) => {
 		},
 		isLogin: true,
 		footer: config.footerInfo.replace(/\n/, '<br />'),
-		nav: navData
+		nav: navData,
+		publicCode: config.publicCode,
 	}
 	await ctx.render(`${curTempPath}/user`, data);
 

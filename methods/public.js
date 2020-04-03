@@ -96,7 +96,8 @@ let getVideoDetill = async (config, ctx, next, filter=false) => {
 			popMovie: popMovie,
 			newMovie: newMovie,
 			likeMovie: likeMovie
-		}
+		},
+		publicCode: config.publicCode,
 	}
 	return data
 }
@@ -378,7 +379,8 @@ let getTypesData = async (config, ctx) => {
 		nav: navData,
 		isLogin: JSON.stringify(ctx.session1) !== '{}' ? true : false,
 		allTypeItem: allTypeItem,
-		curQueryList: curQueryList
+		curQueryList: curQueryList,
+		publicCode: config.publicCode,
 	}
 	return data
 }
@@ -389,7 +391,7 @@ let getSearchData = async (config, ctx) => {
 	let otherColl = getDB().collection('other');
 
 	let { name=false, page=1 } = ctx.query;
-	name = name ? name.trim() : false;
+	name = name ? name.trim() : "";
 	page = page && /\d+/.test(page) ? Number(page) : 1;
 
 	// 全部分类
@@ -475,7 +477,8 @@ let getSearchData = async (config, ctx) => {
 			page: page,
 			total: await videoInfoColl.find({display: true, videoTitle: eval("/" + name +"/i")}).count(),
 			list: searchVideoList
-		}
+		},
+		publicCode: config.publicCode,
 	}
 	return data
 }
@@ -514,7 +517,7 @@ let getCurNavData = async (config, ctx, next) => {
 		// 置顶数据 + 普通数据
 		let topCurNavList = await videoInfoColl.find({popular: true, display: true, video_type: newNid}).sort({rel_time: -1, video_rate: -1, update_time: -1}).limit(36).toArray();
 		let spacing = 36 - topCurNavList.length;
-		let curNavList = (spacing === 0) ? await videoInfoColl.find({popular: false, display: true, video_type: newNid}).sort({rel_time: -1, video_rate: -1, update_time: -1}).limit(spacing).toArray() : [];
+		let curNavList = (spacing !== 0) ? await videoInfoColl.find({popular: false, display: true, video_type: newNid}).sort({rel_time: -1, video_rate: -1, update_time: -1}).limit(spacing).toArray() : [];
 
 		tabList.push({
 			_id: curNavExist._id,
@@ -557,7 +560,8 @@ let getCurNavData = async (config, ctx, next) => {
 		swiperList: (!!isSwiperLen) ? await videoInfoColl.find({display: true, openSwiper: true, video_type: {$in: allChild}}).sort({rel_time: -1, video_rate: -1, update_time: -1}).toArray() : [],
 		footer: config.footerInfo.replace(/\n/, '<br />'),
 		nav: navData,
-		tabList: tabList
+		tabList: tabList,
+		publicCode: config.publicCode,
 	}
 	return data
 }
@@ -749,6 +753,14 @@ let submitMessage = async (ctx, next) => {
 	let confColl = getDB().collection('config');
 	let videoColl = getDB().collection('video_info');
 	let config = await confColl.findOne({});
+
+	// 是否登录
+	if(!ctx.session1.user){
+		let promise = Promise.reject();
+		return await setResponse(ctx, promise, {
+			error: '搞我？没登录就想留言？'
+		})
+	}
 
 	// 网站禁止留言
 	if(!config.allowReply){
