@@ -29,6 +29,10 @@ const filterUserIp = require('./middleware/userIp');
 const routerCorrect = require('./middleware/router');
 // 前置中间件-检测是否关闭了网站
 const webService = require('./middleware/service');
+// 前置中间件-用于处理纯静态化路径
+const openStatic = require('./middleware/static');
+// 前置中间件-用于修正静态化后没有找到的文件路径，恢复原路径
+const cacheCorrect = require('./middleware/cacheCorrect');
 
 // gzip
 app.use(compress({
@@ -38,11 +42,13 @@ app.use(compress({
 app.use(webService())
 // 加工用户IP
 app.use(filterUserIp())
+// 纯静态检查
+app.use(openStatic())
 // 模板引擎ejs
 app.use(views(
 	path.resolve(__dirname, './static/template'),
 	{ map: {html: 'ejs' }}
-));
+))
 // 静态文件
 app.use(static(
   	path.join( __dirname,  './static'),
@@ -50,6 +56,8 @@ app.use(static(
   		maxage: 2592000000
   	}
 ))
+// 矫正静态化以后，没有找到的文件，路由回正，走查询数据库
+app.use(cacheCorrect())
 // 参数解析
 app.use(bodyParser());
 // session cookie

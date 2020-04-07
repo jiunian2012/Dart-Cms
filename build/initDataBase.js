@@ -63,6 +63,7 @@ client.then(async (db) => {
             "footerInfo" : "<p>XXX影视免费提供的完整版全集电影电视剧在线观看数据来自网络视频资源平台，本站未参与任何制作与下载，仅供WEB引用。</p><br/><p>Copyright © XXX影院XXX.COM</p>",
             "notice" : "<p>请勿相信视频中的广告</p>",
             "publicCode" : "",
+            "openStatic" : false,
             "openSwiper" : false,
             "isBjTime" : true,
             "allowReply" : false,
